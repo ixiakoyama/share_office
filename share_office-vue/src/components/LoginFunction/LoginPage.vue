@@ -3,17 +3,12 @@
     <!-- メールアドレス入力欄 -->
     <div class="mailaddress">
       <label>メール</label>
-      <input
-        v-bind="mailaddress"
-        ref="input"
-        type="text"
-        placeholder="aaa@aaa"
-      />
+      <input v-model.trim="mailText" type="email" placeholder="aaa@aaa" />
     </div>
     <!-- パスワード入力欄 -->
     <div class="password">
       <label>パスワード</label>
-      <input type="text" placeholder="password" />
+      <input v-model.trim="passwordText" type="password" placeholder="password" />
     </div>
     <!-- ボタン一覧 -->
     <div>
@@ -24,16 +19,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   date() {
+    const mailText = ref('');
+    const passwordText = ref('');
     return {
-      mailaddress: "",
+      mailText,
+      passwordText
     };
   },
   methods: {
-    loginbutton() {
-      console.log((this.mailaddress = this.$refs.input.value));
-      this.$refs.input.value = "";
+    loginbutton: function () {
+      console.log(this.mailText);
+      console.log(this.passwordText);
     },
   },
 };
