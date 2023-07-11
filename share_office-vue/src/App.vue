@@ -1,13 +1,17 @@
 <template>
   <!-- v-on:clickでクリックされた時に関数clickが発火 -->
   <!-- v-bind:classで真偽性を確認し、falseの場合は削除、trueの場合はbuttonのclassに追加する -->
-  <button v-bind:class="{ active }" v-on:click="click" class="menu-trigger">
+  <button
+    v-bind:class="{ active }"
+    v-on:click="hamburgerMenuLine"
+    class="menu-trigger"
+  >
     <span></span>
     <span></span>
     <span></span>
   </button>
 
-  <nav class="hamburgermenu">
+  <nav v-bind:class="{ active }" class="hamburgermenu">
     <router-link to="/login">Login</router-link>
   </nav>
   <router-view />
@@ -23,7 +27,7 @@ export default {
   },
   // クリックしたらデータactiveの真偽値を変更
   methods: {
-    click: function () {
+    hamburgerMenuLine: function () {
       this.active = !this.active;
     },
   },
@@ -41,7 +45,7 @@ export default {
 .menu-trigger,
 .menu-trigger span {
   display: inline-block;
-  transition: all 0.4s;
+  transition: all 0.3s;
   box-sizing: border-box;
   position: relative;
   z-index: 100;
@@ -80,5 +84,12 @@ export default {
 }
 .menu-trigger.active span:nth-of-type(3) {
   transform: translateY(-11px) rotate(45deg);
+}
+.hamburgermenu {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.hamburgermenu.active {
+  opacity: 1;
 }
 </style>
