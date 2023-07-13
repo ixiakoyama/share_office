@@ -13,7 +13,7 @@
     <!-- ボタン一覧 -->
     <div>
       <button>新規</button>
-      <button v-on:click="loginbutton()" class="loginbutton">ログイン</button>
+      <button v-on:click="loginButton()" class="loginbutton">ログイン</button>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     };
   },
   methods: {
-    loginbutton: function () {
+    loginButton: function () {
       console.log(this.mailText);
       console.log(this.passwordText);
     },

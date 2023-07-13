@@ -12,13 +12,20 @@
   </button>
 
   <nav v-bind:class="{ active }" class="hamburgermenu">
-    <router-link to="/login">Login</router-link>
+    <router-link to="/viewhistory">履歴閲覧</router-link>
+    <router-link to="/mypage">マイページ</router-link>
+    <router-link to="/logout">ログアウト</router-link>
   </nav>
   <router-view />
+
+  <ReceiveDate> </ReceiveDate>
 </template>
 
 <script>
+import ReceiveDate from "./components/ReceiveDateComponent/ReceiveDate.vue";
+
 export default {
+  components: { ReceiveDate },
   data() {
     return {
       //activeのデフォルトをfalseに設定
@@ -91,5 +98,10 @@ export default {
 }
 .hamburgermenu.active {
   opacity: 1;
+}
+.hamburgermenu a {
+  text-decoration: none;
+  color: #333;
+  display: block;
 }
 </style>

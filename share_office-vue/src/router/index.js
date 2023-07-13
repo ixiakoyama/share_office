@@ -1,11 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LoginPage from "@/components/LoginFunction/LoginPage.vue";
+import ViewHistory from "@/components/ViewHistoryComponent/ViewHistory.vue";
+import MyPage from "@/components/MyPageComponent/MyPage.vue";
+import LogoutPage from "@/components/LogoutPageComponent/LogoutPage.vue";
 
 const routes = [
   {
-    path: "/login",
-    name: "Login",
-    component: LoginPage,
+    path: "/viewhistory",
+    name: "ViewHistory",
+    component: ViewHistory,
+  },
+  {
+    path: "/mypage",
+    name: "MyPage",
+    component: MyPage,
+  },
+  {
+    path: "/logout",
+    name: "LogoutPage",
+    component: LogoutPage,
   },
 ];
 
