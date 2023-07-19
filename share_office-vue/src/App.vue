@@ -1,17 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- v-on:clickでクリックされた時に関数clickが発火 -->
+  <!-- v-bind:classで真偽性を確認し、falseの場合は削除、trueの場合はbuttonのclassに追加する -->
+  <button
+    v-bind:class="{ active }"
+    v-on:click="hamburgerMenuLine"
+    class="menu-trigger"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav v-bind:class="{ active }" class="hamburgermenu">
+    <router-link to="/viewhistory">履歴閲覧</router-link>
+    <router-link to="/mypage">マイページ</router-link>
+    <router-link to="/logout">ログアウト</router-link>
+  </nav>
+  <router-view />
+
+  <ReceiveDate> </ReceiveDate>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ReceiveDate from "./components/ReceiveDateComponent/ReceiveDate.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { ReceiveDate },
+  data() {
+    return {
+      //activeのデフォルトをfalseに設定
+      active: false,
+    };
+  },
+  // クリックしたらデータactiveの真偽値を変更
+  methods: {
+    hamburgerMenuLine: function () {
+      this.active = !this.active;
+    },
+  },
+};
 </script>
 
 <style>
@@ -21,6 +48,60 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+}
+.menu-trigger {
+  position: relative;
+  width: 32px;
+  height: 26px;
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #172a22;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+.menu-trigger span:nth-of-type(2) {
+  top: 11px;
+}
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-of-type(1) {
+  transform: translateY(11px) rotate(-45deg);
+}
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-of-type(3) {
+  transform: translateY(-11px) rotate(45deg);
+}
+.hamburgermenu {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.hamburgermenu.active {
+  opacity: 1;
+}
+.hamburgermenu a {
+  text-decoration: none;
+  color: #333;
+  display: block;
 }
 </style>
