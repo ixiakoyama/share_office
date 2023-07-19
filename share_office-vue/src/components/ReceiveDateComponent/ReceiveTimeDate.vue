@@ -8,14 +8,19 @@
   >
     受け取る
   </button>
-
   <p>{{ timeText }}</p>
   <p>{{ completionText }}</p>
   <p>{{ cancelText }}</p>
+  <p>{{ name }}</p>
 </template>
 
 <script>
 export default {
+  //データベースをから受け取ったユーザーの名前を表示する
+  props: {
+    name: String,
+  },
+
   data() {
     return {
       timeText: "",
